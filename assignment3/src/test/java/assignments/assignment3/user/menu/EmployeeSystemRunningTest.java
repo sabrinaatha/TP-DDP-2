@@ -7,12 +7,14 @@ import assignments.assignment3.nota.service.CuciService;
 import assignments.assignment3.nota.service.SetrikaService;
 import assignments.assignment3.user.Employee;
 import assignments.assignment3.user.Member;
+import assignments.assignment3.user.menu.EmployeeSystem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
