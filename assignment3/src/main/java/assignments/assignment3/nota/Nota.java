@@ -120,8 +120,7 @@ public class Nota {
                 String.valueOf(member.getId()),
                 paket,
                 berat,
-                tanggalMasuk,
-                false)
+                tanggalMasuk)
         );
         nota.append("\n--- SERVICE LIST ---\n");
         for (LaundryService service:

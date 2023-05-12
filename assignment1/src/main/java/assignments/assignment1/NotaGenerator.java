@@ -51,7 +51,7 @@ public class NotaGenerator {
     /**
      * Method untuk menampilkan paket.
      */
-    private static void showPaket() {
+    public static void showPaket() {
         System.out.println("+-------------Paket-------------+");
         System.out.println("| Express | 1 Hari | 12000 / Kg |");
         System.out.println("| Fast    | 2 Hari | 10000 / Kg |");
@@ -109,15 +109,15 @@ public class NotaGenerator {
         nota += "ID    : " + id + "\n";
         nota += "Paket : " + paket + "\n";
         nota += "Harga :\n";
-        nota += String.format("%d kg x %d = %d\n", berat, getHargaPaket(paket), (berat * getHargaPaket(paket)));
-        nota += "Tanggal Terima  : " + tanggalTerima + "\n";
-        cal.add(Calendar.DATE, getHariPaket(paket));
-        nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
+        nota += String.format("%d kg x %d = %d\n", berat, toHargaPaket(paket), (berat * toHargaPaket(paket)));
+        nota += "tanggal terima  : " + tanggalTerima + "\n";
+        cal.add(Calendar.DATE, toHariPaket(paket));
+        nota += "tanggal selesai : " + formatter.format(cal.getTime());
 
         return nota;
     }
 
-    private static long getHargaPaket(String paket) {
+    public static long toHargaPaket(String paket) {
         paket = paket.toLowerCase();
         if (paket.equals("express")) return 12000;
         if (paket.equals("fast")) return 10000;
@@ -125,7 +125,7 @@ public class NotaGenerator {
         return -1;
     }
 
-    private static int getHariPaket(String paket) {
+    public static int toHariPaket(String paket) {
         paket = paket.toLowerCase();
         if (paket.equals("express")) return 1;
         if (paket.equals("fast")) return 2;
@@ -133,7 +133,7 @@ public class NotaGenerator {
         return -1;
     }
 
-    private static boolean isNumeric(String str) {
+    public static boolean isNumeric(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c))
                 return false;
@@ -170,7 +170,7 @@ public class NotaGenerator {
                 continue;
             }
 
-            if (getHargaPaket(paket) < 0) {
+            if (toHargaPaket(paket) < 0) {
                 System.out.printf("Paket %s tidak diketahui\n", paket);
                 System.out.println("[ketik ? untuk mencari tahu jenis paket]");
             } else {
