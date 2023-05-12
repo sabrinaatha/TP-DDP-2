@@ -179,6 +179,6 @@ class MemberSystemTest {
         assertTrue(output.contains("[ID Nota = 0]"));
         assertTrue(output.contains("ID    : 1"));
         assertTrue(output.contains("Paket : Reguler"));
-        assertTrue(output.contains("tanggal terima  : 09/04/2023"));
+        assertTrue(output.contains("tanggal terima : 09/04/2023"));
     }
 }
