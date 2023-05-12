@@ -117,6 +117,7 @@ public class MainFrame extends JFrame{
     }
 
     public static void main(String[] args) {
+        System.out.println("test");
         // menampilkan GUI kalian.
         // Jika ingin tau lebih lanjut mengapa menggunakan SwingUtilities.invokeLater
         // silakan akses https://stackoverflow.com/questions/6567870/what-does-swingutilities-invokelater-do
