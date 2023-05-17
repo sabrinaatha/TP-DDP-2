@@ -168,11 +168,6 @@ public class CreateNotaGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "createNotaButton"
      * */
     private void createNota() {
-        if (memberSystemGUI.getLoggedInMember() != null) {
-            System.out.println(memberSystemGUI.getLoggedInMember().getNama());
-        } else {
-            System.out.println("sini");
-        }
         if (getBerat() < 0) {
             JOptionPane.showMessageDialog(mainPanel,  "Berat cucian harus berisi angka.", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (getBerat() < 2) {
