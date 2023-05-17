@@ -8,8 +8,8 @@ import assignments.assignment4.gui.member.AbstractMemberGUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class MemberSystemGUI extends AbstractMemberGUI {
     public static final String KEY = "MEMBER";
@@ -39,7 +39,6 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * */
     @Override
     protected JButton[] createButtons() {
-        System.out.println(getLoggedInMember());
         JButton laundryButton = new JButton("Saya ingin laundry");
         JButton notaButton = new JButton("Lihat detail nota saya");
 
@@ -76,7 +75,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
             newArr[n] = nota.toString();
             result = newArr;
         }
-        JOptionPane.showMessageDialog(mainPanel, getLoggedInMember().getNama(), "Detail nota", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(mainPanel, "Detail nota", Arrays.toString(result), JOptionPane.INFORMATION_MESSAGE);
         //TODO
     }
 
