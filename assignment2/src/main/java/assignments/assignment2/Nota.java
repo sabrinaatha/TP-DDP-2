@@ -105,7 +105,7 @@ public class Nota {
         String id = member.getId();
 
         // Menemukan tanggal terima dan harga paket
-	    String tanggalTerima = NotaGenerator.generateWaktu(id, paket, berat, tanggalMasuk);
+	    String tanggalTerima = NotaGenerator.generateNota(id, paket, berat, tanggalMasuk);
         long hargaPaket = NotaGenerator.toHargaPaket(paket);
 
         // Menghitung harga keseluruhan 
