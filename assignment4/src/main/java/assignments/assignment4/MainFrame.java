@@ -1,6 +1,5 @@
 package assignments.assignment4;
 import assignments.assignment3.LoginManager;
-import assignments.assignment3.user.Employee;
 import assignments.assignment3.user.menu.EmployeeSystem;
 import assignments.assignment3.user.menu.MemberSystem;
 import assignments.assignment4.gui.HomeGUI;
@@ -83,7 +82,7 @@ public class MainFrame extends JFrame{
      * @param page -> key dari halaman yang diinginkan.
      * */
     public void navigateTo(String page){
-        // TODO
+        cards.show(mainPanel, page);
     }
 
     /**
@@ -99,11 +98,15 @@ public class MainFrame extends JFrame{
     public boolean login(String id, String password){
         for (Loginable panel:
                 loginablePanel) {
-            // TODO
+                    boolean value = panel.login(id, password);
+                    if (value) {
+                        navigateTo(panel.getPageName());
+                        return true;
+                    }
+                    //TODO
         }
         return false;
     }
-
 
     /**
      * Method untuk logout dari sistem, kemudian menampilkan halaman Home.
@@ -117,7 +120,7 @@ public class MainFrame extends JFrame{
     }
 
     public static void main(String[] args) {
-        System.out.println("test");
+        new MainFrame();
         // menampilkan GUI kalian.
         // Jika ingin tau lebih lanjut mengapa menggunakan SwingUtilities.invokeLater
         // silakan akses https://stackoverflow.com/questions/6567870/what-does-swingutilities-invokelater-do

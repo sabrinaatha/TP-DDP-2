@@ -2,18 +2,22 @@ package assignments.assignment4.gui.member.employee;
 
 import assignments.assignment3.nota.Nota;
 import assignments.assignment3.nota.NotaManager;
-
+import assignments.assignment3.user.Employee;
 import assignments.assignment3.user.menu.SystemCLI;
 import assignments.assignment4.gui.member.AbstractMemberGUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class EmployeeSystemGUI extends AbstractMemberGUI {
     public static final String KEY = "EMPLOYEE";
+    private JPanel mainPanel;
 
     public EmployeeSystemGUI(SystemCLI systemCLI) {
         super(systemCLI);
+        mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     }
 
 
@@ -30,8 +34,10 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     @Override
     protected JButton[] createButtons() {
-        // TODO
+        JButton cuci = new JButton("It's nyuci time");
+        JButton display = new JButton("Display List Nota");
         return new JButton[]{
+            cuci, display
         };
     }
 
@@ -54,6 +60,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void displayNota() {
+
         // TODO
     }
 
@@ -62,6 +69,8 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void cuci() {
+
+        JOptionPane.showMessageDialog(mainPanel, "Stand back! %s beginning to nyuci!\n");
         // TODO
     }
 }

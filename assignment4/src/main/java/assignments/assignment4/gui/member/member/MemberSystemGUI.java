@@ -8,14 +8,19 @@ import assignments.assignment4.gui.member.AbstractMemberGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 import java.awt.event.ActionListener;
 
 public class MemberSystemGUI extends AbstractMemberGUI {
     public static final String KEY = "MEMBER";
+    private JPanel mainPanel;
 
     public MemberSystemGUI(SystemCLI systemCLI) {
         super(systemCLI);
+        mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     }
+
 
     @Override
     public String getPageName(){
@@ -34,8 +39,12 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * */
     @Override
     protected JButton[] createButtons() {
-        // TODO
+        System.out.println(getLoggedInMember());
+        JButton laundryButton = new JButton("Saya ingin laundry");
+        JButton notaButton = new JButton("Lihat detail nota saya");
+
         return new JButton[]{
+            laundryButton, notaButton
         };
     }
 
@@ -58,7 +67,17 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void showDetailNota() {
-        // TODO
+        String[] result = new String[0];
+        for (Nota nota:
+            getLoggedInMember().getNotaList()) {
+            int n = result.length;
+            String[] newArr = new String[n + 1];
+            System.arraycopy(result, 0, newArr, 0, n);
+            newArr[n] = nota.toString();
+            result = newArr;
+        }
+        JOptionPane.showMessageDialog(mainPanel, Arrays.toString(result), "Detail nota", JOptionPane.INFORMATION_MESSAGE);
+        //TODO
     }
 
     /**
@@ -66,7 +85,8 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void createNota() {
-        // TODO
+        MainFrame mainFrame = MainFrame.getInstance();
+        mainFrame.navigateTo(CreateNotaGUI.KEY);
     }
 
 }

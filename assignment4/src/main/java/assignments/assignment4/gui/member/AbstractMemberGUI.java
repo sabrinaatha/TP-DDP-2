@@ -3,6 +3,7 @@ package assignments.assignment4.gui.member;
 import assignments.assignment3.user.Member;
 import assignments.assignment3.user.menu.SystemCLI;
 import assignments.assignment4.MainFrame;
+import assignments.assignment4.gui.member.member.MemberSystemGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public abstract class AbstractMemberGUI extends JPanel implements Loginable{
-    private JLabel welcomeLabel;
-    private JLabel loggedInAsLabel;
+    protected JLabel welcomeLabel;
+    protected JLabel loggedInAsLabel;
     protected Member loggedInMember;
     private final SystemCLI systemCLI;
+    
 
     public AbstractMemberGUI(SystemCLI systemCLI) {
         super(new BorderLayout());
@@ -43,9 +45,9 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
         JButton[] buttons = createButtons();
         ActionListener[] listeners = createActionListeners();
 
-        if (buttons.length != listeners.length) {
-            throw new IllegalStateException("Number of buttons and listeners must be equal.");
-        }
+        // if (buttons.length != listeners.length) {
+        //     throw new IllegalStateException("Number of buttons and listeners must be equal.");
+        // }
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -88,8 +90,19 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
      * @return true jika ID dan password sesuai dengan instance member, false jika tidak.
      * */
     public boolean login(String id, String password) {
-        // TODO
-        return false;
+        Member authMember = systemCLI.authUser(id, password);
+        if (authMember == null) {
+            return false;
+        } else {
+            setMember(authMember);
+            welcomeLabel.setText("Welcome! " + loggedInMember.getNama());
+            loggedInAsLabel.setText("Logged in as " + loggedInMember.getId());
+            return true;
+        }
+    }
+
+    public void setMember(Member loggedInMember) {
+        this.loggedInMember = loggedInMember;
     }
 
     /**
