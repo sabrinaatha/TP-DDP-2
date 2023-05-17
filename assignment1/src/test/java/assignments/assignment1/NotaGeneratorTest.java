@@ -11,7 +11,7 @@ public class NotaGeneratorTest {
                 "Harga :\n" +
                 "20 kg x 7000 = 140000\n" +
                 "tanggal terima  : 01/02/2023\n" +
-                "sanggal selesai : 04/02/2023";
+                "tanggal selesai : 04/02/2023";
         assertEquals(
             solution,
             NotaGenerator.generateNota(
