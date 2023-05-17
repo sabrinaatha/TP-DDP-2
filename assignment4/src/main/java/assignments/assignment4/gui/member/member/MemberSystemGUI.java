@@ -76,7 +76,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
             newArr[n] = nota.toString();
             result = newArr;
         }
-        JOptionPane.showMessageDialog(mainPanel, Arrays.toString(result), "Detail nota", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(mainPanel, getLoggedInMember().getNama(), "Detail nota", JOptionPane.INFORMATION_MESSAGE);
         //TODO
     }
 
