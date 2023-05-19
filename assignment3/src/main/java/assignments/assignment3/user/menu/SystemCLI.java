@@ -2,6 +2,7 @@ package assignments.assignment3.user.menu;
 
 import assignments.assignment3.user.Member;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public abstract class SystemCLI {

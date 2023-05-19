@@ -1,5 +1,11 @@
+// Nama : Sabrina Atha Shania
+// Kelas : DDP-B
+// NPM : 2206829591
+
+// Import Library.
 package assignments.assignment4;
 import assignments.assignment3.LoginManager;
+import assignments.assignment3.user.Employee;
 import assignments.assignment3.user.menu.EmployeeSystem;
 import assignments.assignment3.user.menu.MemberSystem;
 import assignments.assignment4.gui.HomeGUI;
@@ -13,8 +19,9 @@ import assignments.assignment4.gui.member.member.MemberSystemGUI;
 import javax.swing.*;
 import java.awt.*;
 
-
+// Class utama.
 public class MainFrame extends JFrame{
+    // Data fields.
     private static MainFrame instance;
     private final Loginable[] loginablePanel;
     private final MemberSystem memberSystem = new MemberSystem();
@@ -29,14 +36,15 @@ public class MainFrame extends JFrame{
     private final MemberSystemGUI memberSystemGUI = new MemberSystemGUI(memberSystem);
     private final CreateNotaGUI createNotaGUI = new CreateNotaGUI(memberSystemGUI);
 
+    // Constructor mainframe.
     private MainFrame(){
         super("CuciCuciSystem");
-//        TODO: uncomment code dibawah ini setelah kamu implmentasikan addEmployee pada EmployeeSystem.
-//        // for context dari 2 employee baru ini : https://ristek.link/karyawan-baru-cucicuci
-//        employeeSystem.addEmployee(new Employee[]{
-//                new Employee("delta Epsilon Huha Huha", "ImplicitDiff"),
-//                new Employee("Regret", "FansBeratKanaArima")
-//        });
+        employeeSystem.addEmployee(new Employee[]{
+            new Employee("delta Epsilon Huha Huha", "ImplicitDiff"),
+            new Employee("Regret", "FansBeratKanaArima")
+       });
+
+       // Set GUI.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 432);
         setVisible(true);
@@ -44,6 +52,7 @@ public class MainFrame extends JFrame{
                 employeeSystemGUI,
                 memberSystemGUI,
         };
+        // Inisiasi GUI.
         initGUI();
         cards.show(mainPanel, HomeGUI.KEY);
         add(mainPanel);
@@ -103,7 +112,6 @@ public class MainFrame extends JFrame{
                         navigateTo(panel.getPageName());
                         return true;
                     }
-                    //TODO
         }
         return false;
     }
@@ -119,8 +127,8 @@ public class MainFrame extends JFrame{
         navigateTo(HomeGUI.KEY);
     }
 
+    // Method untuk menjalankan program.
     public static void main(String[] args) {
-        new MainFrame();
         // menampilkan GUI kalian.
         // Jika ingin tau lebih lanjut mengapa menggunakan SwingUtilities.invokeLater
         // silakan akses https://stackoverflow.com/questions/6567870/what-does-swingutilities-invokelater-do

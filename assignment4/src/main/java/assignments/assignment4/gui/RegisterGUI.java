@@ -1,5 +1,9 @@
-package assignments.assignment4.gui;
+// Nama : Sabrina Atha Shania
+// Kelas : DDP-B
+// NPM : 2206829591
 
+// Import Library.
+package assignments.assignment4.gui;
 import assignments.assignment3.LoginManager;
 import assignments.assignment3.user.Member;
 import assignments.assignment4.MainFrame;
@@ -9,7 +13,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Class untuk tampilan register.
 public class RegisterGUI extends JPanel {
+    // Data fields.
     public static final String KEY = "REGISTER";
     private JPanel mainPanel;
     private JLabel nameLabel;
@@ -22,16 +28,19 @@ public class RegisterGUI extends JPanel {
     private LoginManager loginManager;
     private JButton backButton;
 
+    GridBagConstraints c = new GridBagConstraints();
     private String name, numberPhone, password;
 
+    //Constructor registerGUI.
     public RegisterGUI(LoginManager loginManager) {
-        super(new BorderLayout()); // Setup layout, Feel free to make any changes
+        super(new BorderLayout()); // Setup layout
         this.loginManager = loginManager;
 
-        // Set up main panel, Feel free to make any changes
+        // Set up main panel.
         mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        // Inisiasi GUI.
         initGUI();
 
         add(mainPanel, BorderLayout.CENTER);
@@ -43,41 +52,76 @@ public class RegisterGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
+        // Set semua label, button, dan textfield.
         nameLabel = new JLabel("Masukkan nama Anda");
-        JPanel panel1 = new JPanel();
         nameTextField = new JTextField();
-        panel1.add(nameTextField);
 
-        mainPanel.add(nameLabel);
-        mainPanel.add(panel1);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.ipady = 25;
+        c.ipadx = 0;
+        mainPanel.add(nameLabel, c);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        c.ipady = 0;
+        c.ipadx = 600;
+        mainPanel.add(nameTextField, c);
 
         phoneLabel = new JLabel("Masukkan nomor handphone Anda");
-        JPanel panel2 = new JPanel();
         phoneTextField = new JTextField();
-        panel2.add(phoneTextField);
 
-        mainPanel.add(phoneLabel);
-        mainPanel.add(panel2);
+        c.gridx = 0;
+        c.gridy = 2;
+        c.ipady = 25;
+        c.ipadx = 0;
+        mainPanel.add(phoneLabel, c);
+
+        c.gridx = 0;
+        c.gridy = 3;
+        c.ipady = 0;
+        c.ipadx = 600;
+        mainPanel.add(phoneTextField, c);
 
         passwordLabel = new JLabel("Masukkan password Anda");
-        JPanel panel3 = new JPanel();
         passwordField = new JPasswordField();
-        panel3.add(passwordField);
 
-        mainPanel.add(passwordLabel);
-        mainPanel.add(panel3);
+        c.gridx = 0;
+        c.gridy = 4;
+        c.ipady = 25;
+        c.ipadx = 0;
+        mainPanel.add(passwordLabel, c);
 
-        JPanel panel4 = new JPanel();
+        c.gridx = 0;
+        c.gridy = 5;
+        c.ipady = 0;
+        c.ipadx = 600;
+        mainPanel.add(passwordField, c);
+
+        JPanel panelKosong = new JPanel();
+        c.gridx = 0;
+        c.gridy = 6;
+        c.ipady = 25;
+        c.ipadx = 600;
+        mainPanel.add(panelKosong, c);
+
         registerButton = new JButton("Register");
-        panel4.add(registerButton);
 
-        JPanel panel5 = new JPanel();
+        c.gridx = 0;
+        c.gridy = 7;
+        c.ipady = 5;
+        c.ipadx = 0;
+        mainPanel.add(registerButton, c);
+
         backButton = new JButton("Kembali");
-        panel5.add(backButton);
 
-        mainPanel.add(panel4);
-        mainPanel.add(panel5);
+        c.gridx = 0;
+        c.gridy = 8;
+        c.ipady = 5;
+        c.ipadx = 0;
+        mainPanel.add(backButton, c);
 
+        // Set semua action yang berhubungan dengan button dan textfield.
         nameTextField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){ 
                 String userName = nameTextField.getText();
@@ -117,8 +161,7 @@ public class RegisterGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
-        MainFrame mainFrame = MainFrame.getInstance();
-        mainFrame.navigateTo(HomeGUI.KEY);
+        startAgain();
     }
 
     /**
@@ -126,6 +169,7 @@ public class RegisterGUI extends JPanel {
     * Akan dipanggil jika pengguna menekan "registerButton"
     * */
     private void handleRegister() {
+        // Pengecekan sesuai dengan syarat soal.
         if ((name == null) || (numberPhone == null) || (password == null)) {
             JOptionPane.showMessageDialog(mainPanel, "Semua field diatas wajib diisi!", "Empty Field", JOptionPane.INFORMATION_MESSAGE);
         } else if (!isNumeric(numberPhone)) {
@@ -133,6 +177,7 @@ public class RegisterGUI extends JPanel {
             phoneTextField.setText("");
         } else {
             Member newMember = loginManager.register(name, numberPhone, password);
+            
             if (newMember == null) {
                 JOptionPane.showMessageDialog(mainPanel, "User dengan nama " + name + " dan nomor hp " + numberPhone + " sudah ada!\n", "Registration Failed", JOptionPane.ERROR_MESSAGE);
                 startAgain();
@@ -143,12 +188,19 @@ public class RegisterGUI extends JPanel {
         }
     }
 
+    // Reset seluruh button dan textfield.
     public void startAgain() {
         nameTextField.setText("");
         phoneTextField.setText("");
         passwordField.setText("");
-        handleBack();
+        setName(null);
+        setPassword(null);
+        setNoPhone(null);
+        MainFrame mainFrame = MainFrame.getInstance();
+        mainFrame.navigateTo(HomeGUI.KEY);
     }
+
+    // Getter.
     public String getName() {
         return name;
     }
@@ -161,6 +213,7 @@ public class RegisterGUI extends JPanel {
         return password;
     }
 
+    // Setter.
     public void setName(String name) {
         this.name = name;
     }
@@ -173,6 +226,7 @@ public class RegisterGUI extends JPanel {
         this.password = password;
     }
 
+    // Method untuk mengecek apakah seluruh nomor adalah angka.
     public static boolean isNumeric(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c))

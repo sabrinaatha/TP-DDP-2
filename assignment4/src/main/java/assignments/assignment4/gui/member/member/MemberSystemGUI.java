@@ -1,5 +1,9 @@
-package assignments.assignment4.gui.member.member;
+// Nama : Sabrina Atha Shania
+// Kelas : DDP-B
+// NPM : 2206829591
 
+// Import Library.
+package assignments.assignment4.gui.member.member;
 import assignments.assignment3.nota.Nota;
 import assignments.assignment3.user.Member;
 import assignments.assignment3.user.menu.SystemCLI;
@@ -9,24 +13,27 @@ import assignments.assignment4.gui.member.AbstractMemberGUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
+// Class untuk tampilan membersystemGUI.
 public class MemberSystemGUI extends AbstractMemberGUI {
+    // Datafields.
     public static final String KEY = "MEMBER";
     private JPanel mainPanel;
 
+    // Constructor membersystemGUI.
     public MemberSystemGUI(SystemCLI systemCLI) {
         super(systemCLI);
         mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     }
 
-
+    // Page dari membersystem.
     @Override
     public String getPageName(){
         return KEY;
     }
 
+    // Getter.
     public Member getLoggedInMember(){
         return loggedInMember;
     }
@@ -66,17 +73,33 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void showDetailNota() {
-        String[] result = new String[0];
-        for (Nota nota:
-            getLoggedInMember().getNotaList()) {
-            int n = result.length;
-            String[] newArr = new String[n + 1];
-            System.arraycopy(result, 0, newArr, 0, n);
-            newArr[n] = nota.toString();
-            result = newArr;
+        String result = "";
+        Nota[] notaList = getLoggedInMember().getNotaList();
+
+        // Kondisi ketika tidak ada nota.
+        if (notaList.length == 0) {
+            // Set info GUI.
+            JTextArea textArea = new JTextArea(30, 30);
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            setPreferredSize(new Dimension(500, 500));
+            textArea.setText("Belum pernah laundy di CuciCuci, hiks :'(");
+            add(scrollPane, BorderLayout.CENTER);
+            JOptionPane.showMessageDialog(mainPanel, scrollPane,  "Detail nota", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            // Ambil semua hasil tostring nota.
+            for (Nota nota:
+                getLoggedInMember().getNotaList()) {
+                result += nota.toString() + "\n"; 
+            }
+            // Set info GUI.
+            JTextArea textArea = new JTextArea(30, 30);
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            setPreferredSize(new Dimension(500, 500));
+            textArea.setText(result);
+            add(scrollPane, BorderLayout.CENTER);
+            JOptionPane.showMessageDialog(mainPanel, scrollPane,"Detail nota", JOptionPane.INFORMATION_MESSAGE);
         }
-        JOptionPane.showMessageDialog(mainPanel, "Detail nota", Arrays.toString(result), JOptionPane.INFORMATION_MESSAGE);
-        //TODO
     }
 
     /**

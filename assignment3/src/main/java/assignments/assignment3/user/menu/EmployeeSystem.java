@@ -16,6 +16,16 @@ public class EmployeeSystem extends SystemCLI {
         };
     }
 
+    public void addEmployee(Employee[] employees) {
+        Member[] result = new Member[employees.length + memberList.length];
+     
+     
+        System.arraycopy(memberList, 0, result, 0, memberList.length);
+        System.arraycopy(employees, 0, result, memberList.length, employees.length);
+     
+        memberList = result;
+     }
+     
     @Override
     protected boolean processChoice(int choice) {
         boolean logout = false;
@@ -38,7 +48,7 @@ public class EmployeeSystem extends SystemCLI {
     public void cuci() {
         System.out.printf("Stand back! %s beginning to nyuci!\n", loginMember.getNama());
         for (Nota nota:
-             notaList) {
+notaList) {
             System.out.println(nota.kerjakan());
         }
     }
