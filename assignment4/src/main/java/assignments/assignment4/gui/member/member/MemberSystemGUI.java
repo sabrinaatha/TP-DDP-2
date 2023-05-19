@@ -84,7 +84,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
             setPreferredSize(new Dimension(500, 500));
             textArea.setText("Belum pernah laundy di CuciCuci, hiks :'(");
             add(scrollPane, BorderLayout.CENTER);
-            JOptionPane.showMessageDialog(mainPanel, scrollPane,  "Detail nota", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, scrollPane,  "Detail nota", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
             // Ambil semua hasil tostring nota.
@@ -98,7 +98,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
             setPreferredSize(new Dimension(500, 500));
             textArea.setText(result);
             add(scrollPane, BorderLayout.CENTER);
-            JOptionPane.showMessageDialog(mainPanel, scrollPane,"Detail nota", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, scrollPane,"Detail nota", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

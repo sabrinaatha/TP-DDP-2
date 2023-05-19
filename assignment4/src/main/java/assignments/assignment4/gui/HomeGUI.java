@@ -136,7 +136,7 @@ public class HomeGUI extends JPanel {
      * */
     private void handleNextDay() {
         JOptionPane.showMessageDialog(mainPanel, "Kamu tidur hari ini... zzz...");
-        toNextDay();
+        NotaManager.toNextDay();
         String nextDay = NotaManager.fmt.format(cal.getTime());
         setToday(nextDay);
         dateLabel.setText("Hari ini:" + nextDay);

@@ -210,8 +210,9 @@ public class CreateNotaGUI extends JPanel {
      * */
     private void createNota() {
         Member member = memberSystemGUI.getLoggedInMember();
+        String beratAwal = beratTextField.getText();
         // Kondisi apabila ada yang null.
-        if ((paket == null) || (berat == 0)) {
+        if ((paket == null) || (beratAwal.equals(""))) {
             JOptionPane.showMessageDialog(mainPanel, "Semua field diatas wajib diisi!", "Empty Field", JOptionPane.INFORMATION_MESSAGE);
         // Kondisi apabila berat tidak sesuai.
         } else if (getBerat() < 0) {
@@ -254,6 +255,7 @@ public class CreateNotaGUI extends JPanel {
     private void handleBack() {
         MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.navigateTo(MemberSystemGUI.KEY);
+        startAgain();
     }
 
     // Method untuk mengecek apakah seluruh nomor adalah angka.
